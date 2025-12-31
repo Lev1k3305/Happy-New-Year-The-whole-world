@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NY 2026: DIGITAL MEMORY</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <audio id="bg-music" loop><source src="music.mp3" type="audio/mpeg"></audio>
+    
+    <canvas id="main-canvas"></canvas>
+
+    <div class="container">
+        <h2 class="system-title">MEMORIES_COLLECTOR_2026</h2>
+        <div id="timer">00:00:00</div>
+        
+        <div class="progress-bar">
+            <div id="progress-fill"></div>
+        </div>
+
+        <input type="text" id="user-name" placeholder="Твое имя / Никнейм">
+        <textarea id="user-msg" placeholder="Твои пожелания или итоги 2025..."></textarea>
+        
+        <div class="btn-group">
+            <button class="btn-send" onclick="sendToCloud()">🚀 ОТПРАВИТЬ АВТОРУ</button>
+            <button class="btn-voice" onclick="speakMessage()">🎙 ПОСЛУШАТЬ ПОСЛАНИЕ</button>
+        </div>
+
+        <div id="status">Все сообщения сохраняются в вечности...</div>
+
+        <div class="developer-info">
+    <p>DEVELOPED BY: <span>Prosto_Aldyar</span></p>
+    <p>CONTACT: <span>+7 (705) 160-30-72</span></p>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
