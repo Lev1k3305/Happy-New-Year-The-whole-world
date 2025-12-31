@@ -8,21 +8,29 @@ function changeMusic(path) {
 
 async function sendToCloud() {
     const name = document.getElementById('user-name').value;
+    const achievements = document.getElementById('user-achievements').value; // Забираем достижения
     const message = document.getElementById('user-msg').value;
-    if(!name || !message) return alert("Пожалуйста, заполни поля!");
+    
+    if(!name || !message) return alert("Пожалуйста, заполни хотя бы имя и пожелание!");
 
-    document.getElementById('status').innerText = "Отправляю в 2026-й...";
+    document.getElementById('status').innerText = "Сохраняю твою историю...";
     
     try {
         await fetch(DATABASE_URL, {
             method: 'POST',
             mode: 'no-cors',
-            body: JSON.stringify({ name, message })
+            body: JSON.stringify({ 
+                name: name, 
+                achievements: achievements, // Добавляем в отправку
+                message: message 
+            })
         });
-        document.getElementById('status').innerText = "Сохранено навсегда! ✨";
+        document.getElementById('status').innerText = "Всё сохранено! ✨";
+        // Очищаем поля
+        document.getElementById('user-achievements').value = "";
         document.getElementById('user-msg').value = "";
     } catch (e) {
-        document.getElementById('status').innerText = "Ошибка сети.";
+        document.getElementById('status').innerText = "Ошибка отправки.";
     }
 }
 
@@ -135,3 +143,4 @@ function captureAndDownload() {
 }
 
 // ... (остальной JS код, включая window.onload) ...
+
