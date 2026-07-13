@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Новый Год 2026 — Мое Послание</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> 
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
     <audio id="bg-music" loop><source src="assets/music1.mp3" type="audio/mpeg"></audio>
@@ -13,17 +13,17 @@
 
     <div class="container" id="capture-zone"> <h2 class="system-title">До 2026 года осталось:</h2>
         <div id="timer">00:00:00</div>
-        
+
         <div class="progress-bar"><div id="progress-fill"></div></div>
 
         <div class="music-menu">
             <div class="music-buttons">
-                <button class="btn-m" onclick="changeMusic('assets/music1.mp3')">❄️ УЮТ</button>
-                <button class="btn-m" onclick="changeMusic('assets/music2.mp3')">✨ МАГИЯ</button>
-                <button class="btn-m" onclick="changeMusic('assets/music3.mp3')">🎸 ДРАЙВ</button>
+                <button class="btn-m active" aria-pressed="true" onclick="changeMusic(this, 'assets/music1.mp3')">❄️ УЮТ</button>
+                <button class="btn-m" aria-pressed="false" onclick="changeMusic(this, 'assets/music2.mp3')">✨ МАГИЯ</button>
+                <button class="btn-m" aria-pressed="false" onclick="changeMusic(this, 'assets/music3.mp3')">🎸 ДРАЙВ</button>
             </div>
         </div>
-        
+
         <div class="my-achievements">
             <h3>Мои Достижения 2025:</h3>
             <ul id="achievement-list">
@@ -33,27 +33,30 @@
             </ul>
             <button class="btn-add-ach" onclick="addAchievement()">Добавить еще</button>
         </div>
-        
+
         <div class="letter-box">
             <h3>Письмо в 2026-й</h3>
             <div class="letter-text">
-                Здесь начни писать всё, что у тебя на душе. 
-                Расскажи про свои приключения, про то, что ты чувствуешь сейчас, 
-                и что хочешь пожелать друзьям, которых, возможно, долго не увидишь. 
+                Здесь начни писать всё, что у тебя на душе.
+                Расскажи про свои приключения, про то, что ты чувствуешь сейчас,
+                и что хочешь пожелать друзьям, которых, возможно, долго не увидишь.
                 Этот текст — твоя цифровая подпись в истории.
             </div>
         </div>
 
 <div class="interaction-zone">
+    <label class="field-label" for="user-name">Ваше имя <span class="required">*</span></label>
     <input type="text" id="user-name" placeholder="Твоё имя">
-    
+
+    <label class="field-label" for="user-achievements">Твои главные достижения в 2025 году</label>
     <textarea id="user-achievements" placeholder="Твои главные достижения в 2025 году..."></textarea>
-    
+
+    <label class="field-label" for="user-msg">Пожелание друзьям в 2026-й <span class="required">*</span></label>
     <textarea id="user-msg" placeholder="Пожелание друзьям в 2026-й..."></textarea>
-    
+
     <button class="btn-send" onclick="sendToCloud()">🚀 ОТПРАВИТЬ В ВЕЧНОСТЬ</button>
 </div>
-        
+
         <button class="btn-screenshot" onclick="captureAndDownload()">📸 СДЕЛАТЬ СКРИНШОТ</button> <div id="status">Жду твоих слов...</div>
 
         <div class="developer-info">
@@ -65,6 +68,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
-

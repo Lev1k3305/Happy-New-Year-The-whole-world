@@ -1,28 +1,44 @@
 const DATABASE_URL = "https://script.google.com/macros/s/AKfycby1MEMIbtvlfczHam5HWhd6QK1Bz4aZkb09wDJLim1JDI36j1DLRSEFb76GTuI1dlwJtA/exec";
 
-function changeMusic(path) {
+function changeMusic(btn, path) {
     const audio = document.getElementById('bg-music');
     audio.src = path;
     audio.play().catch(() => console.log("Нажми на страницу, чтобы звук заработал"));
+
+    document.querySelectorAll('.btn-m').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+    });
+    if (btn) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+    }
 }
 
 async function sendToCloud() {
     const name = document.getElementById('user-name').value;
     const achievements = document.getElementById('user-achievements').value; // Забираем достижения
     const message = document.getElementById('user-msg').value;
-    
+
     if(!name || !message) return alert("Пожалуйста, заполни хотя бы имя и пожелание!");
 
+    const btnSend = document.querySelector('.btn-send');
+    const originalText = btnSend.innerText;
+    btnSend.disabled = true;
+    btnSend.innerText = "⏳ СОХРАНЯЮ...";
+    btnSend.style.opacity = "0.6";
+    btnSend.style.cursor = "not-allowed";
+
     document.getElementById('status').innerText = "Сохраняю твою историю...";
-    
+
     try {
         await fetch(DATABASE_URL, {
             method: 'POST',
             mode: 'no-cors',
-            body: JSON.stringify({ 
-                name: name, 
+            body: JSON.stringify({
+                name: name,
                 achievements: achievements, // Добавляем в отправку
-                message: message 
+                message: message
             })
         });
         document.getElementById('status').innerText = "Всё сохранено! ✨";
@@ -31,6 +47,11 @@ async function sendToCloud() {
         document.getElementById('user-msg').value = "";
     } catch (e) {
         document.getElementById('status').innerText = "Ошибка отправки.";
+    } finally {
+        btnSend.disabled = false;
+        btnSend.innerText = originalText;
+        btnSend.style.opacity = "";
+        btnSend.style.cursor = "";
     }
 }
 
@@ -68,7 +89,7 @@ function updateTimer() {
     const now = new Date();
     const next = new Date(2026, 0, 1);
     const diff = next - now;
-    
+
     if (diff <= 0) {
         document.getElementById('timer').innerText = "С НОВЫМ ГОДОМ!";
         return;
@@ -78,9 +99,9 @@ function updateTimer() {
     const h = Math.floor((diff / 3600000) % 24);
     const m = Math.floor((diff / 60000) % 60);
     const s = Math.floor((diff / 1000) % 60);
-    
+
     document.getElementById('timer').innerText = `${d}д ${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
-    
+
     const yearStart = new Date(now.getFullYear(), 0, 1);
     const progress = ((now - yearStart) / (next - yearStart)) * 100;
     document.getElementById('progress-fill').style.width = progress + '%';
@@ -113,7 +134,7 @@ function addAchievement() {
 // Функция для скриншота
 function captureAndDownload() {
     const captureZone = document.getElementById('capture-zone'); // Область для скриншота
-    
+
     // Временно скрываем кнопки скриншота и добавления достижений, чтобы они не попали на скриншот
     const btnScreenshot = document.querySelector('.btn-screenshot');
     const btnAddAch = document.querySelector('.btn-add-ach');
@@ -143,4 +164,3 @@ function captureAndDownload() {
 }
 
 // ... (остальной JS код, включая window.onload) ...
-
