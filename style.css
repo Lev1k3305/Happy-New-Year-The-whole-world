@@ -46,8 +46,30 @@ canvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 1; }
     color: #ffd700; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.7rem; transition: 0.3s;
 }
 .btn-m:hover { background: #ffd700; color: #000; }
+.btn-m.active {
+    background: #ffd700;
+    color: #000;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+    font-weight: bold;
+}
 
 /* Поля и кнопки */
+.field-label {
+    display: block;
+    text-align: left;
+    font-size: 0.8rem;
+    color: #ffd700;
+    margin-bottom: 6px;
+    margin-left: 4px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.required {
+    color: #ff4d4d;
+    margin-left: 2px;
+}
+
 input, textarea {
     width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.3);
     color: #fff; border: 1px solid rgba(255, 255, 255, 0.1);
@@ -55,27 +77,27 @@ input, textarea {
 }
 
 .btn-send {
-    width: 100%; 
-    padding: 15px; 
-    background: #ff4d4d; 
+    width: 100%;
+    padding: 15px;
+    background: #ff4d4d;
     color: white;
-    border-radius: 12px; 
-    border: none; 
-    font-weight: bold; 
-    cursor: pointer; 
+    border-radius: 12px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
     transition: 0.3s;
 }
 .btn-send:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4); }
 
 .developer-info {
-    margin-top: 25px; 
-    padding-top: 15px; 
+    margin-top: 25px;
+    padding-top: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 0.75rem; 
+    font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.4);
 }
-.developer-info span { 
-    color: #ffd700; 
+.developer-info span {
+    color: #ffd700;
 }
 
 /* ... (весь предыдущий CSS код) ... */
